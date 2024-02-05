@@ -1,0 +1,19 @@
+version: '3'
+services:
+  fastapi1:
+    build: ./fastapi1
+    volumes:
+      - .:/fastapi1/app
+    depends_on:
+      - fastapi2
+    environment:
+      - FASTAPI2_URL=http://fastapi2:80
+    ports:
+      - "8001:80"
+
+  fastapi2:
+    build: ./fastapi2
+    volumes:
+      - .:/fastapi2/app
+    ports:
+      - "8002:80"
